@@ -1,0 +1,35 @@
+<div class="rr-controls-panel">
+  <div class="rr-sort-panel">
+    {{#link-to "bands.band.controls.songs" (query-params
+      sort="ratingDesc")
+               class="rr-sort-button" data-test-rr="sort-by-rating-desc"}}
+      Rating
+      {{fa-icon "angle-down"}}
+    {{/link-to}}
+    {{#link-to "bands.band.controls.songs" (query-params
+      sort="ratingAsc")
+               class="rr-sort-button" data-test-rr="sort-by-rating-asc"}}
+      Rating
+      {{fa-icon "angle-up"}}
+    {{/link-to}}
+    {{#link-to "bands.band.controls.songs" (query-params
+      sort="titleDesc")
+               class="rr-sort-button" data-test-rr="sort-by-title-desc"}}
+      Title
+      {{fa-icon "angle-down"}}
+    {{/link-to}}
+    {{#link-to "bands.band.controls.songs" (query-params
+      sort='titleAsc')
+               class="rr-sort-button" data-test-rr="sort-by-title-asc"}}
+      Title
+      {{fa-icon "angle-up"}}
+    {{/link-to}}
+  </div>
+  <div class="rr-search-panel">
+    {{input type="text" class="rr-input" value=searchTerm
+            data-test-rr="search-box"}}
+    <button type="button" class="rr-search-button">{{fa-icon
+      "search"}}</button>
+  </div>
+</div>
+{{outlet}}

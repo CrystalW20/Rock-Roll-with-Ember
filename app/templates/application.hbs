@@ -1,3 +1,26 @@
-<h2 id="title">Welcome to Ember</h2>
-
-{{outlet}}
+<div class="rr-container">
+  <div class="rr-page-header">
+    {{#link-to "index" class="rr-header-link"}}
+      <h1 class="rr-app-title">
+        Rock &amp; Roll
+        <small class="rr-subtitle">
+          with Ember.js
+        </small>
+      </h1>
+    {{/link-to}}
+    {{#if session.isAuthenticated}}
+      <div class="rr-user-panel">
+        <span data-test-rr="user-email">
+          {{session.data.authenticated.userEmail}}
+        </span>
+        |
+        <span>
+          {{link-to "Logout" "logout" data-test-rr="logout"}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+  <div class="rr-main-content">
+    {{outlet}}
+  </div>
+</div>
