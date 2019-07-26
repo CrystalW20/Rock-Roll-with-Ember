@@ -1,12 +1,34 @@
 <section class="rr-panel b--solid br1 bw1">
-  <button type="button" class="rr-action-button fr"
-          onclick={{action (if isEditing "save" "edit")}}>
-    {{if isEditing "Save" "Edit"}}
-  </button>
-  <h3>Description</h3>
+  <div class="rr-inline-form fr">
+    <div class="rr-inline-form-group">
+      <button
+        class="rr-cancel-icon-left"
+        onclick={{action (mut isEditing) false}}
+      >
+        {{fa-icon "times"}}
+      </button>
+      <button
+        type="button"
+        class="rr-action-button ml1"
+        onclick={{action (if isEditing "save" "edit")}}
+      >
+        {{if isEditing "Save" "Edit"}}
+      </button>
+    </div>
+  </div>
+  <h3>
+    Description
+  </h3>
   {{#if isEditing}}
+    {{#if showErrors.description}}
+      <div class="rr-form-field-error" data-test-rr="description-error">
+        {{v-get model "description" "message"}}
+      </div>
+    {{/if}}
     {{textarea class="rr-textarea" value=model.description}}
   {{else}}
-    <p class="lh-copy">{{model.description}}</p>
+    <p class="lh-copy">
+      {{model.description}}
+    </p>
   {{/if}}
 </section>

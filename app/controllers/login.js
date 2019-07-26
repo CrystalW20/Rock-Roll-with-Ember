@@ -1,7 +1,15 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { buildValidations } from 'ember-cp-validations';
+import emailFieldValidation from 'rarwe/validations/email-field';
+import passwordFieldValidation from 'rarwe/validations/password-field';
 
-export default Controller.extend({
+const Validations = buildValidations({
+    email: emailFieldValidation,
+    password: passwordFieldValidation
+    });
+
+    export default Controller.extend(Validations, {
     session: service(),
     actions: {
         async signIn(event) {

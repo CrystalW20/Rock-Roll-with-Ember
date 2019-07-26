@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    
     'ember-simple-auth': {
       routeIfAlreadyAuthenticated: 'bands'
       },
