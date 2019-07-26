@@ -1,32 +1,38 @@
 <div class="rr-controls-panel">
   <div class="rr-sort-panel">
-
     <div class="rr-search-panel">
-      {{input type="text" class="rr-input" value=searchTerm
-              data-test-rr="search-box"}}
-      <button type="button" class="rr-search-button">{{fa-icon "search"}}</button>
+      {{input
+        type="text"
+        class="rr-input"
+        value=searchTerm
+        data-test-rr="search-box"
+      }}
+      <button type="button" class="rr-search-button">
+        {{fa-icon "search"}}
+      </button>
     </div>
-
-{{#link-to (query-params sort="ratingDesc") class="rr-sort-button"
-           data-test-rr="sort-by-rating-desc"}}
-      Rating
-      {{fa-icon "angle-down"}}
-{{/link-to}}
-{{#link-to (query-params sort="ratingAsc") class="rr-sort-button"
-           data-test-rr="sort-by-rating-asc"}}>
-      Rating
-      {{fa-icon "angle-up"}}
-{{/link-to}}>
-{{#link-to (query-params sort="titleDesc") class="rr-sort-button"
-           data-test-rr="sort-by-title-desc"}}
-      Title
-      {{fa-icon "angle-down"}}
-{{/link-to}}
-{{#link-to (query-params sort="titleAsc") class="rr-sort-button"
-           data-test-rr="sort-by-title-asc"}}>
-      Title
-      {{fa-icon "angle-up"}}
-{{/link-to}}
+    <select
+      class="rr-select"
+      data-test-rr="sort-selector"
+      onchange={{action (mut sortBy) value="target.value"}}
+    >
+      <option value="ratingDesc" data-test-rr="sort-by-rating-desc">
+        By
+rating, descending
+      </option>
+      <option value="ratingAsc" data-test-rr="sort-by-rating-asc">
+        By
+rating, ascending
+      </option>
+      <option value="titleDesc" data-test-rr="sort-by-title-desc">
+        By
+title, descending
+      </option>
+      <option value="titleAsc" data-test-rr="sort-by-title-asc">
+        By
+title, ascending
+      </option>
+    </select>
   </div>
 </div>
 <ul class="rr-list">
@@ -36,27 +42,45 @@
       <StarRating
         class="fr"
         @rating={{song.rating}}
-          @onClick={{action "updateRating" song}}
-      />
+        @onClick={{action "updateRating" song}}
+       />
+
     </li>
   {{else}}
     <li class="tc">
-      No {{capitalize model.name}} songs yet, why don't you <a href="#" onclick={{action "addSong"}}>create one?</a>create one?
+      No
+      {{capitalize model.name}}
+      songs yet, why don't you
+      <a href="#" onclick={{action "addSong"}}>
+        create one?
+      </a>
+      create one?
     </li>
   {{/each}}
 </ul>
 <div class="rr-new-label">
   {{#if isAddingSong}}
-    <form class="rr-inline-form" onsubmit={{action "saveSong"}} data-test-rr="new-song-form">
-      {{input type="text" class="rr-input" placeholder=newSongPlaceholder
-              value=newSongTitle}}
+    <form
+      class="rr-inline-form"
+      onsubmit={{action "saveSong"}}
+      data-test-rr="new-song-form"
+    >
+      {{input
+        type="text"
+        class="rr-input"
+        placeholder=newSongPlaceholder
+        value=newSongTitle
+      }}
       <div class="rr-inline-form-group ml-auto">
-        <button type="submit" class="rr-action-button"
-
-                disabled={{isAddButtonDisabled}}
-                  data-test-rr="new-song-button">Add</button>
-        <button class="rr-cancel-icon" onclick={{action
-          "cancelAddSong"}}>
+        <button
+          type="submit"
+          class="rr-action-button"
+          disabled={{isAddButtonDisabled}}
+          data-test-rr="new-song-button"
+        >
+          Add
+        </button>
+        <button class="rr-cancel-icon" onclick={{action "cancelAddSong"}}>
           {{fa-icon "times"}}
         </button>
       </div>
@@ -64,7 +88,9 @@
   {{else}}
     <label onclick={{action "addSong"}} data-test-rr="new-song-label">
       {{fa-icon "plus"}}
-      <span class="ml1">Add new song</span>
+      <span class="ml1">
+        Add new song
+      </span>
     </label>
   {{/if}}
 </div>
